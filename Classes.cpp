@@ -48,6 +48,29 @@ void ADD(vector<Media*>* media) {
   char mediaType[15];
   cout << "What kind of media would you like to add? Movies, Music, or Videogames: " << endl;
   cin.get(mediaType, 15);
-  cin.clear();
+  if(strcmp(mediaType, "movies") == 0 || strcmp(mediaType, "Movies") == 0) {
+    Movie* mov = new movie();
+    cout << "Title: " << endl;
+    cin.get(mov->getTitle(), 30);
+    cout << "Year: " << endl;
+    cin >> *mov->getYear();
+    cout << "Director: " << endl;
+    cin.get(mov->getDirector(), 30);
+    cout << "Duration in minutes: " << endl;
+    cin >> *mov->getDuration();
+    cout << "Rating out of 5 stars: " << endl;
+    cin >> *mov->getRating();
+    media->push_back(mov);
+    
+  }
+  else if(strcmp(mediaType, "music") == 0 || strcmp(mediaType, "Music") == 0) {
+
+  }
+  else if(strcmp(mediaType, "videogames") == 0 || strcmp(mediaType, "Videogames") == 0) {
+
+  }
+  else {
+    cout << "Invalid media type, try again" << endl;
+  }
 }
   
