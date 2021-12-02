@@ -5,18 +5,18 @@
 
 using namespace std;
 
-Videogames::Videogames() {
+Videogames::videogames() {
 
 }
 
 char* Videogames::getPublisher() {
-  return publisher;
+  return publisherGame;
 }
 
 float* Videogames::getRating() {
-  return rating;
+  return &rating;
 }
 
 int Videogames::getType() {
-  return 1;
+  return 0;
 }

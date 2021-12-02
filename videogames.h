@@ -9,12 +9,12 @@ using namespace std;
 
 class Videogames : public Media {
  public:
-  Videogames();
+  videogames();
   virtual int getType();
   char* getPublisher();
   float* getRating();
  private:
-  char publisher[30];
+  char publisherGame[30];
   float rating;
 };
 #endif

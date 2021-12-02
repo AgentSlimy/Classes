@@ -45,9 +45,9 @@ int main() {
 }
 
 void ADD(vector<Media*>* media) {
-  char input[15];
-  cout << "What kind of media would you like to add? Movie, Music, or Videogames: " << endl;
-  cin.get(input, 15);
+  char mediaType[15];
+  cout << "What kind of media would you like to add? Movies, Music, or Videogames: " << endl;
+  cin.get(mediaType, 15);
   cin.clear();
 }
   
