@@ -5,7 +5,7 @@
 #include "media.h"
 #include "videogames.h"
 #include "music.h"
-#include "movie.h"
+#include "movies.h"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ void ADD(vector<Media*>* media) {
   cin.get(mediaType, 15);
   if(strcmp(mediaType, "movies") == 0 || strcmp(mediaType, "Movies") == 0) {
     Movie* mov = new movie();
-    cout << "Title: " << endl;
+    cout << "Adding Movie" << endl << "Title: " << endl;
     cin.get(mov->getTitle(), 30);
     cout << "Year: " << endl;
     cin >> *mov->getYear();
@@ -60,14 +60,33 @@ void ADD(vector<Media*>* media) {
     cin >> *mov->getDuration();
     cout << "Rating out of 5 stars: " << endl;
     cin >> *mov->getRating();
-    media->push_back(mov);
+    media->push_back(movie);
     
   }
   else if(strcmp(mediaType, "music") == 0 || strcmp(mediaType, "Music") == 0) {
-
+    Music* mus = new music();
+    cout << "Adding Music" << endl << "Title: " << endl;
+    cin.get(mus->getTitle(), 30);
+    cout << "Artist: " << endl;
+    cin.get(mus->getArtist(), 30);
+    cout << "Publisher: " << endl;
+    cin.get(mus->getPublisher(), 30);
+    cout << "Year: " << endl;
+    cin >> *mus->getYear();
+    cout << "Duration in seconds: " << endl;
+    cin >> *mus->getDuration();
+    media->push_back(music);
   }
   else if(strcmp(mediaType, "videogames") == 0 || strcmp(mediaType, "Videogames") == 0) {
-
+    Videogames* vg = new videogames();
+    cout << "Adding Videogame" << endl << "Title: " << endl;
+    cin.get(vg->getTitle(), 30);
+    cout << "Year: " << endl;
+    cin >> *vg->getYear();
+    cout << "Publisher: " << endl;
+    cin.get(vg->getPublisher(), 30);
+    cout << "Rating out of 5 stars: " << endl;
+    cin >> *vg->getRating();
   }
   else {
     cout << "Invalid media type, try again" << endl;
