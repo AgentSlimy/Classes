@@ -1,26 +1,26 @@
 #include <iostream>
 #include <cstring>
 #include "media.h"
-#include "movies.h"
+#include "movie.h"
 
 using namespace std;
 
-Movie::movie() {
+Movie::Movie() {
 
 }
 
 char* Movie::getDirector() {
-  return directorMovie;
+	return directorMovie;
 }
 
 int* Movie::getDuration() {
-  return &durationMovie;
+	return &durationMovie;
 }
 
 float* Movie::getRating() {
-  return &ratingMovie;
+	return &ratingMovie;
 }
 
 int Movie::getType() {
-  return 2;
+	return 2;
 }
