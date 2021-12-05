@@ -6,14 +6,14 @@
 
 using namespace std;
 
-class Media{
- public:
-  Media();
-  char* getTitle();
-  int* getYear();
-  virtual int getType();
- private:
-  char title[30];
-  int year;
+class Media {
+public:
+	Media();
+	char* getTitle();
+	int* getYear();
+	virtual int getType();
+private:
+	char title[30];
+	int year;
 };
 #endif
