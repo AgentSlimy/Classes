@@ -9,13 +9,13 @@ Media::Media() {
 }
 
 char* Media::getTitle() {
-  return title;
+	return title;
 }
 
 int* Media::getYear() {
-  return &year;
+	return &year;
 }
 
 int Media::getType() {
-  return 0;
+	return 0;
 }
