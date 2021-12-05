@@ -5,22 +5,22 @@
 
 using namespace std;
 
-Music::music() {
+Music::Music() {
 
 }
 
 char* Music::getArtist() {
-  return artistMusic;
+	return artistMusic;
 }
 
 char* Music::getPublisher() {
-  return publisherMusic;
+	return publisherMusic;
 }
 
 int* Music::getDuration() {
-  return &durationMusic;
+	return &durationMusic;
 }
 
 int Music::getType() {
-  return 1;
+	return 1;
 }
