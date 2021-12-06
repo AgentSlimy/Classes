@@ -179,7 +179,6 @@ void DELETE(char* Title, vector<Media*>* media) { //Delete by using the title
         if (strcmp(Title, (*iterDelTtl)->getTitle()) == 0) {
             cout << (*iterDelTtl)->getTitle() << ", ";
             cout << *(*iterDelTtl)->getYear() << endl;
-
             if ((*iterDelTtl)->getType() == 0) { //For deleting videogames
                 cout << "  Videogame: " << endl;
                 cout << "  Published by " << dynamic_cast<Videogames*>(*iterDelTtl)->getPublisher() << endl;
@@ -197,7 +196,7 @@ void DELETE(char* Title, vector<Media*>* media) { //Delete by using the title
                 cout << "  Duration of " << *dynamic_cast<Movie*>(*iterDelTtl)->getDuration() << " minutes" << endl;
                 cout << "  Rating at " << *dynamic_cast<Movie*>(*iterDelTtl)->getRating() << " stars out of 5" << endl << endl;
             }
-            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deketion
+            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deletion
             cin.get(input, 5);
             cin.clear();
             cin.ignore(10000, '\n');
@@ -219,7 +218,6 @@ void DELETE(int Year, vector<Media*>* media) { //Delete by using the year
         if (Year == *(*iterDelYr)->getYear()) {
             cout << (*iterDelYr)->getTitle() << ", ";
             cout << *(*iterDelYr)->getYear() << endl;
-
             if ((*iterDelYr)->getType() == 0) { //For deleting videogames
                 cout << "  Videogame: " << endl;
                 cout << "  Published by " << dynamic_cast<Videogames*>(*iterDelYr)->getPublisher() << endl;
@@ -237,7 +235,7 @@ void DELETE(int Year, vector<Media*>* media) { //Delete by using the year
                 cout << "  Duration of " << *dynamic_cast<Movie*>(*iterDelYr)->getDuration() << " minutes" << endl;
                 cout << "  Rating at " << *dynamic_cast<Movie*>(*iterDelYr)->getRating() << " stars out of 5" << endl << endl;
             }
-            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deketion
+            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deletion
             cin.get(input, 5);
             cin.clear();
             cin.ignore(10000, '\n');
@@ -246,6 +244,56 @@ void DELETE(int Year, vector<Media*>* media) { //Delete by using the year
                 delete* iterDelYr;
                 iterDelYr = media->erase(iterDelYr);
                 return;
+            }
+        }
+    }
+}
+
+void SEARCH(char* Title, vector<Media*>* media) { //Search by using title
+    vector<Media*>::iterator iterSerTtl;
+    for (iterSerTtl = media->begin(); iterSerTtl != media->end(); ++iterSerTtl) {
+        if (strcmp(Title, (*iterSerTtl)->getTitle()) == 0) {
+            cout << (*iterSerTtl)->getTitle() << ", ";
+            cout << *(*iterSerTtl)->getYear() << endl;
+            if ((*iterSerTtl)->getType() == 0) { //Search for videogame
+                cout << "  Publisheb by " << dynamic_cast<Videogames*>(*iterSerTtl)->getPublisher() << endl;
+                cout << "  Rating of " << *dynamic_cast<Videogames*>(*iterSerTtl)->getRating() << " stars out of 5" << endl;
+                
+            }
+            else if ((*iterSerTtl)->getType() == 1) { //Search for music
+                cout << "  Music by artist " << dynamic_cast<Music*>(*iterSerTtl)->getArtist() << endl;
+                cout << "  Duration of " << *dynamic_cast<Music*>(*iterSerTtl)->getDuration() << " seconds" << endl;
+                cout << "  Published by " << dynamic_cast<Music*>(*iterSerTtl)->getPublisher() << endl << endl;
+            }
+            else if ((*iterSerTtl)->getType() == 2) { //Search for movie
+                cout << "  Directed by " << dynamic_cast<Movie*>(*iterSerTtl)->getDirector() << endl;
+                cout << "  Duration of " << *dynamic_cast<Movie*>(*iterSerTtl)->getDuration() << " minutes" << endl;
+                cout << "  Rating at " << *dynamic_cast<Movie*>(*iterSerTtl)->getRating() << " stars out of 5" << endl << endl;
+            }
+        }
+    }
+}
+
+//Same thing as search using title, except using 'int Year'
+void SEARCH(int Year, vector<Media*>* media) { //Search by using year
+    vector<Media*>::iterator iterSerYr;
+    for (iterSerYr = media->begin(); iterSerYr != media->end(); ++iterSerYr) {
+        if (Year == *(*iterSerYr)->getYear()) {
+            cout << (*iterSerYr)->getTitle() << ", ";
+            cout << *(*iterSerYr)->getYear() << endl;
+            if ((*iterSerYr)->getType() == 0) { //Search for videogame
+                cout << "  Publisheb by " << dynamic_cast<Videogames*>(*iterSerYr)->getPublisher() << endl;
+                cout << "  Rating of " << *dynamic_cast<Videogames*>(*iterSerYr)->getRating() << " stars out of 5" << endl;
+            }
+            else if ((*iterSerYr)->getType() == 1) { //Search for music
+                cout << "  Music by artist " << dynamic_cast<Music*>(*iterSerYr)->getArtist() << endl;
+                cout << "  Duration of " << *dynamic_cast<Music*>(*iterSerYr)->getDuration() << " seconds" << endl;
+                cout << "  Published by " << dynamic_cast<Music*>(*iterSerYr)->getPublisher() << endl << endl;
+            }
+            else if ((*iterSerYr)->getType() == 2) { //Search for movie
+                cout << "  Directed by " << dynamic_cast<Movie*>(*iterSerYr)->getDirector() << endl;
+                cout << "  Duration of " << *dynamic_cast<Movie*>(*iterSerYr)->getDuration() << " minutes" << endl;
+                cout << "  Rating at " << *dynamic_cast<Movie*>(*iterSerYr)->getRating() << " stars out of 5" << endl << endl;
             }
         }
     }
