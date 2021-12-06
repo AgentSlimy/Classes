@@ -1,3 +1,10 @@
+//Author: Nathan Zou
+//Date: 12/5/21
+//This program is Classes, a program that can categorizes different forms of media, such as video games, movies, and music.
+//Destructors: https://www.geeksforgeeks.org/destructors-c/
+//Dynamic Cast: https://www.geeksforgeeks.org/dynamic-_cast-in-cpp/
+//Vector Commands (Again): https://www.geeksforgeeks.org/vector-in-cpp-stl/
+
 #include <iostream>
 #include <vector>
 #include <cstring>
@@ -11,16 +18,16 @@ using namespace std;
 
 //functions
 void ADD(vector<Media*>* media);
-void SEARCH(char* title, vector<Media*>* media);
-void DELETE(char* title, vector<Media*>* media);
-void SEARCH(int year, vector<Media*>* media);
-void DELETE(int year, vector<Media*>* media);
+void SEARCH(char* Title, vector<Media*>* media);
+void DELETE(char* Title, vector<Media*>* media);
+void SEARCH(int Year, vector<Media*>* media);
+void DELETE(int Year, vector<Media*>* media);
 
 int main() {
     bool running = true;
-    char input[7];
-    char title[30];
-    int year;
+    char input[7]; //for "home" commands
+    char title[30]; //for title input at search and delete
+    int year; //for year input at search and delete
     vector<Media*> mediaList;
     cout << "Welcome to Classes." << endl;
     while (running == true) {
@@ -28,52 +35,69 @@ int main() {
         cin.get(input, 7);
         cin.clear();
         cin.ignore(10000, '\n');
-        if (strcmp(input, "add") == 0 || strcmp(input, "ADD") == 0 || strcmp(input, "Add") == 0) {
-            ADD(&mediaList);
+        if (strcmp(input, "add") == 0 || strcmp(input, "ADD") == 0 || strcmp(input, "Add") == 0) { //Add command
+            ADD(&mediaList); //Runs add
         }
-        else if (strcmp(input, "delete") == 0 || strcmp(input, "DELETE") == 0 || strcmp(input, "Delete") == 0) {
+        else if (strcmp(input, "delete") == 0 || strcmp(input, "DELETE") == 0 || strcmp(input, "Delete") == 0) { //Delete command
             cout << "Delete by title or year?" << endl;
             cin.get(input, 6);
             cin.clear();
             cin.ignore(10000, '\n');
-            if (strcmp(input, "Title") == 0 || strcmp(input, "title") == 0) {
+            if (strcmp(input, "Title") == 0 || strcmp(input, "title") == 0) { //Runs delete by title
                 cout << "Input title: " << endl;
                 cin.get(title, 30);
                 cin.clear();
                 cin.ignore(10000, '\n');
                 DELETE(title, &mediaList);
             }
-            else if (strcmp(input, "Year") == 0 || strcmp(input, "year") == 0) {
-                cout << "Input title: " << endl;
+            else if (strcmp(input, "Year") == 0 || strcmp(input, "year") == 0) { //Runs delete by year
+                cout << "Input year: " << endl;
                 cin >> year;
                 cin.clear();
                 cin.ignore(10000, '\n');
                 DELETE(year, &mediaList);
             }
         }
-        else if (strcmp(input, "search") == 0 || strcmp(input, "SEARCH") == 0 || strcmp(input, "Search") == 0) {
-            //Insert code here
+        else if (strcmp(input, "search") == 0 || strcmp(input, "SEARCH") == 0 || strcmp(input, "Search") == 0) { //Search command, essentially the same as the delete command
+            cout << "Search by title or year?" << endl;
+            cin.get(input, 6);
+            cin.clear();
+            cin.ignore(10000, '\n');
+            if (strcmp(input, "Title") == 0 || strcmp(input, "title") == 0) { //Runs serach by title
+                cout << "Input title: " << endl;
+                cin.get(title, 30);
+                cin.clear();
+                cin.ignore(10000, '\n');
+                SEARCH(title, &mediaList);
+            }
+            else if (strcmp(input, "Year") == 0 || strcmp(input, "year") == 0) { //Runs serach by year
+                cout << "Input year: " << endl;
+                cin >> year;
+                cin.clear();
+                cin.ignore(10000, '\n');
+                SEARCH(year, &mediaList);
+            }
         }
-        else if (strcmp(input, "quit") == 0 || strcmp(input, "QUIT") == 0 || strcmp(input, "Quit") == 0) {
+        else if (strcmp(input, "quit") == 0 || strcmp(input, "QUIT") == 0 || strcmp(input, "Quit") == 0) { //Quit command, it quits...
             cout << "Quitting program" << endl;
             running = false;
         }
-        else {
-            cout << "Invalid input" << endl;
+        else { 
+            cout << "Invalid input" << endl; //Error message
             running = true;
         }
     }
     return 0;
 }
 
-void ADD(vector<Media*>* media) {
+void ADD(vector<Media*>* media) { //Add
     char mediaType[15];
     cout << "What kind of media would you like to add? Movies, Music, or Videogames: " << endl;
     cin.get(mediaType, 15);
-    if (strcmp(mediaType, "movies") == 0 || strcmp(mediaType, "Movies") == 0) {
+    cin.clear();
+    cin.ignore(10000, '\n');
+    if (strcmp(mediaType, "movies") == 0 || strcmp(mediaType, "Movies") == 0) { //Adding movies
         Movie* mov = new Movie();
-        cin.clear();
-        cin.ignore(10000, '\n');
         cout << "Adding Movie" << endl << "Title: " << endl;
         cin.get(mov->getTitle(), 30);
         cin.clear();
@@ -97,10 +121,8 @@ void ADD(vector<Media*>* media) {
         media->push_back(mov);
         cout << "Movie added" << endl;
     }
-    else if (strcmp(mediaType, "music") == 0 || strcmp(mediaType, "Music") == 0) {
+    else if (strcmp(mediaType, "music") == 0 || strcmp(mediaType, "Music") == 0) { //Adding music
         Music* mus = new Music();
-        cin.clear();
-        cin.ignore(10000, '\n');
         cout << "Adding Music" << endl << "Title: " << endl;
         cin.get(mus->getTitle(), 30);
         cin.clear();
@@ -124,10 +146,8 @@ void ADD(vector<Media*>* media) {
         media->push_back(mus);
         cout << "Music added" << endl;
     }
-    else if (strcmp(mediaType, "videogames") == 0 || strcmp(mediaType, "Videogames") == 0) {
+    else if (strcmp(mediaType, "videogames") == 0 || strcmp(mediaType, "Videogames") == 0) { //Adding videogames
         Videogames* vg = new Videogames();
-        cin.clear();
-        cin.ignore(10000, '\n');
         cout << "Adding Videogame" << endl << "Title: " << endl;
         cin.get(vg->getTitle(), 30);
         cin.clear();
@@ -148,11 +168,11 @@ void ADD(vector<Media*>* media) {
         cout << "Videogame added" << endl;
     }
     else {
-        cout << "Invalid media type, try again" << endl;
+        cout << "Invalid media type" << endl; //Error message 2
     }
 }
 
-void DELETE(char* Title, vector<Media*>* media) {
+void DELETE(char* Title, vector<Media*>* media) { //Delete by using the title
     char input[5];
     vector<Media*>::iterator iterDelTtl;
     for (iterDelTtl = media->begin(); iterDelTtl != media->end(); ++iterDelTtl) {
@@ -160,12 +180,72 @@ void DELETE(char* Title, vector<Media*>* media) {
             cout << (*iterDelTtl)->getTitle() << ", ";
             cout << *(*iterDelTtl)->getYear() << endl;
 
-            if ((*iterDelTtl)->getType() == 0) {
+            if ((*iterDelTtl)->getType() == 0) { //For deleting videogames
+                cout << "  Videogame: " << endl;
                 cout << "  Published by " << dynamic_cast<Videogames*>(*iterDelTtl)->getPublisher() << endl;
                 cout << "  Rating of " << *dynamic_cast<Videogames*>(*iterDelTtl)->getRating() << " stars out of 5" << endl;
             }
-            else if ((*iterDelTtl)->getType() == 1) {
+            else if ((*iterDelTtl)->getType() == 1) { //For deleting music
+                cout << "  Music: " << endl;
+                cout << "  Music by artist " << dynamic_cast<Music*>(*iterDelTtl)->getArtist() << endl;
+                cout << "  Duration of " << *dynamic_cast<Music*>(*iterDelTtl)->getDuration() << " seconds" << endl;
+                cout << "  Published by " << dynamic_cast<Music*>(*iterDelTtl)->getPublisher() << endl << endl;
+            }
+            else if ((*iterDelTtl)->getType() == 2) { //For deleting movies
+                cout << "  Movie: " << endl;
+                cout << "  Directed by " << dynamic_cast<Movie*>(*iterDelTtl)->getDirector() << endl;
+                cout << "  Duration of " << *dynamic_cast<Movie*>(*iterDelTtl)->getDuration() << " minutes" << endl;
+                cout << "  Rating at " << *dynamic_cast<Movie*>(*iterDelTtl)->getRating() << " stars out of 5" << endl << endl;
+            }
+            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deketion
+            cin.get(input, 5);
+            cin.clear();
+            cin.ignore(10000, '\n');
+            if (strcmp(input, "yes") == 0) {
+                //delete
+                delete* iterDelTtl;
+                iterDelTtl = media->erase(iterDelTtl);
+                return;
+            }
+        }
+    }
+}
 
+//Same thing as delete using title, except using 'int Year'
+void DELETE(int Year, vector<Media*>* media) { //Delete by using the year
+    char input[5];
+    vector<Media*>::iterator iterDelYr;
+    for (iterDelYr = media->begin(); iterDelYr != media->end(); ++iterDelYr) {
+        if (Year == *(*iterDelYr)->getYear()) {
+            cout << (*iterDelYr)->getTitle() << ", ";
+            cout << *(*iterDelYr)->getYear() << endl;
+
+            if ((*iterDelYr)->getType() == 0) { //For deleting videogames
+                cout << "  Videogame: " << endl;
+                cout << "  Published by " << dynamic_cast<Videogames*>(*iterDelYr)->getPublisher() << endl;
+                cout << "  Rating of " << *dynamic_cast<Videogames*>(*iterDelYr)->getRating() << " stars out of 5" << endl;
+            }
+            else if ((*iterDelYr)->getType() == 1) { //For deleting music
+                cout << "  Music: " << endl;
+                cout << "  Music by artist " << dynamic_cast<Music*>(*iterDelYr)->getArtist() << endl;
+                cout << "  Duration of " << *dynamic_cast<Music*>(*iterDelYr)->getDuration() << " seconds" << endl;
+                cout << "  Published by " << dynamic_cast<Music*>(*iterDelYr)->getPublisher() << endl << endl;
+            }
+            else if ((*iterDelYr)->getType() == 2) { //For deleting movies
+                cout << "  Movie: " << endl;
+                cout << "  Directed by " << dynamic_cast<Movie*>(*iterDelYr)->getDirector() << endl;
+                cout << "  Duration of " << *dynamic_cast<Movie*>(*iterDelYr)->getDuration() << " minutes" << endl;
+                cout << "  Rating at " << *dynamic_cast<Movie*>(*iterDelYr)->getRating() << " stars out of 5" << endl << endl;
+            }
+            cout << "Delete this media? 'yes' or 'no'" << endl; //Confirm deketion
+            cin.get(input, 5);
+            cin.clear();
+            cin.ignore(10000, '\n');
+            if (strcmp(input, "yes") == 0) {
+                //delete
+                delete* iterDelYr;
+                iterDelYr = media->erase(iterDelYr);
+                return;
             }
         }
     }
