@@ -172,10 +172,10 @@ void ADD(vector<Media*>* media) { //Add
     }
 }
 
-void DELETE(char* Title, vector<Media*>* media) { //Delete by using the title
+void DELETE(char* Title, vector<Media*>* media) { //Delete by using the title, 
     char input[5];
     vector<Media*>::iterator iterDelTtl;
-    for (iterDelTtl = media->begin(); iterDelTtl != media->end(); ++iterDelTtl) {
+    for (iterDelTtl = media->begin(); iterDelTtl != media->end(); ++iterDelTtl) { //With help from Stefan Ene for going through vector
         if (strcmp(Title, (*iterDelTtl)->getTitle()) == 0) {
             cout << (*iterDelTtl)->getTitle() << ", ";
             cout << *(*iterDelTtl)->getYear() << endl;
