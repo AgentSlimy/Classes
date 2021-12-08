@@ -11,12 +11,12 @@ class Movie : public Media {
 public:
 	Movie();
 	virtual int getType();
-	char* getDirector();
-	int* getDuration();
-	float* getRating();
+	char* getDirector(); //Get movie director char pointer 
+	int* getDuration(); //Get movie duration int pointer
+	float* getRating(); //Get movie rating float pointer
 private:
-	char directorMovie[30];
-	int durationMovie;
-	float ratingMovie;
+	char directorMovie[30]; //Director input array
+	int durationMovie; //Int for duration of movie in minutes
+	float ratingMovie; //Float for movie rating out of 5
 };
 #endif
