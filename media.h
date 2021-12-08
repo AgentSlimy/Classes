@@ -9,11 +9,11 @@ using namespace std;
 class Media {
 public:
 	Media();
-	char* getTitle();
-	int* getYear();
+	char* getTitle(); //Get title char pointer, applies to all other ".h" files
+	int* getYear(); //Get year int pointer, applies to all other ".h" files
 	virtual int getType();
 private:
-	char title[30];
-	int year;
+	char title[30]; //Title array
+	int year; //Int year
 };
 #endif
