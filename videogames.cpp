@@ -10,11 +10,11 @@ Videogames::Videogames() {
 }
 
 char* Videogames::getPublisher() {
-	return publisherGame;
+	return publisherGame; //Returns Publisher from "videogames.h" class
 }
 
 float* Videogames::getRating() {
-	return &rating;
+	return &rating; //Return Ratinig from "videogames.h" class
 }
 
 int Videogames::getType() {
