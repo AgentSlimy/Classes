@@ -10,15 +10,15 @@ Music::Music() {
 }
 
 char* Music::getArtist() {
-	return artistMusic;
+	return artistMusic; //Returns Artist from "music.h" class
 }
 
 char* Music::getPublisher() {
-	return publisherMusic;
+	return publisherMusic; //Returns Publisher from "music.h" class
 }
 
 int* Music::getDuration() {
-	return &durationMusic;
+	return &durationMusic; //Returns Duration from "music.h" class
 }
 
 int Music::getType() {
